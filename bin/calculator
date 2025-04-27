@@ -1,0 +1,14 @@
+#!/usr/bin/env ruby
+
+require_relative '../lib/calculator'
+
+calc = Calculator.new
+
+puts 'string calculator'
+
+loop do
+  puts "Enter String -:"
+  input = gets.chomp
+
+  break unless input.downcase == 'y'
+end
