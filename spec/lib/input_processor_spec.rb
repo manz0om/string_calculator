@@ -1,9 +1,12 @@
+require 'spec_helper'
 require_relative '../../lib/input_processor'
 
 RSpec.describe InputProcessor do
   subject { InputProcessor }
-  let(:input) {""}
+
   context "process comma seperated input string" do
+    let(:input) {""}
+
     it "should parse string and return empty array" do
       expect(subject.new(input).parse).to eq([])
     end
@@ -26,6 +29,34 @@ RSpec.describe InputProcessor do
     it "should parse string and return array of numbers including negatives" do
       input = "3,5,-1,-2"
       expect(subject.new(input).parse).to eq([3,5,-1,-2])
+    end
+  end
+  context "process \\n seperated input string" do
+    let(:input) {"1\n2,3"}
+
+    it "should parse string and return array of numbers" do
+      expect(subject.new(input).parse).to eq([1,2,3])
+    end
+
+    it "should parse string with multiple \\n and return array of numbers" do
+      input = "1\n\n\n2,\n3"
+      expect(subject.new(input).parse).to eq([1,2,3])
+    end
+  end
+
+  context "process delimiter given in input string" do
+    let(:input) {"//[***]\n1***2***3"}
+
+    it "should parse string and return array of numbers" do
+      expect(subject.new(input).parse).to eq([1,2,3])
+    end
+  end
+
+  context "process mutiple delimiter given in input string" do
+    let(:input) {"//[**][\\n][%]\n1**2%3\n1"}
+
+    it "should parse string and return array of numbers" do
+      expect(subject.new(input).parse).to eq([1,2,3,1])
     end
   end
 end

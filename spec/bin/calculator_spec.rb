@@ -1,4 +1,4 @@
-require_relative '../../bin/calculator'
+require 'spec_helper'
 require 'open3'
 
 RSpec.describe "String Calculator" do
