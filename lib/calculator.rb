@@ -1,4 +1,4 @@
-require 'error/negative_input_error.rb'
+require_relative 'error/negative_input_error.rb'
 
 class Calculator
 
