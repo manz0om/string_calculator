@@ -44,6 +44,16 @@ RSpec.describe "String Calculator" do
       expect(status.success?).to eq(true)
     end
 
+    it "multiple number string input, number > 1000 are excluded" do
+      stdin_data = <<~INPUT
+        1,5,1000,10001
+      INPUT
+      stdout_str, status = Open3.capture2('ruby', subject, stdin_data: stdin_data)
+
+      expect(stdout_str).to include("sum of given input string is 1006")
+      expect(status.success?).to eq(true)
+    end
+
     it "multiple number with negative string input, prints negative not allowed" do
       stdin_data = <<~INPUT
         3,5,-1,-2
@@ -66,13 +76,23 @@ RSpec.describe "String Calculator" do
       expect(status.success?).to eq(true)
     end
 
-    it "should parse string with multiple \\n and return array of numbers" do
+    it "should parse string with multiple \\n and return sum" do
       stdin_data = <<~INPUT
         1\\n\\n\\n2,\\n3
       INPUT
       stdout_str, status = Open3.capture2('ruby', subject, stdin_data: stdin_data)
 
       expect(stdout_str).to include("sum of given input string is 6")
+      expect(status.success?).to eq(true)
+    end
+
+    it "should parse string with multiple \\n and return sum excluding number > 1000" do
+      stdin_data = <<~INPUT
+        1\\n\\n\\n2,\\n3\n1000\n1001
+      INPUT
+      stdout_str, status = Open3.capture2('ruby', subject, stdin_data: stdin_data)
+
+      expect(stdout_str).to include("sum of given input string is 1006")
       expect(status.success?).to eq(true)
     end
 
@@ -88,13 +108,23 @@ RSpec.describe "String Calculator" do
   end
 
   context "process delimiter given in input string" do
-    it "should parse string and return array of numbers" do
+    it "should parse string and return sum" do
       stdin_data = <<~INPUT
         "//[***]\n1***2***3"
       INPUT
       stdout_str, status = Open3.capture2('ruby', subject, stdin_data: stdin_data)
 
       expect(stdout_str).to include("sum of given input string is 6")
+      expect(status.success?).to eq(true)
+    end
+
+    it "should parse string and return sum excluding number > 1000" do
+      stdin_data = <<~INPUT
+        "//[***]\n1***2***3***1000,1001"
+      INPUT
+      stdout_str, status = Open3.capture2('ruby', subject, stdin_data: stdin_data)
+
+      expect(stdout_str).to include("sum of given input string is 1006")
       expect(status.success?).to eq(true)
     end
 
@@ -110,13 +140,23 @@ RSpec.describe "String Calculator" do
   end
 
   context "process mutiple delimiter given in input string" do
-    it "should parse string and return array of numbers" do
+    it "should parse string and return sum" do
       stdin_data = <<~INPUT
         //[**][\\n][%]\n1**2%3\n1
       INPUT
       stdout_str, status = Open3.capture2('ruby', subject, stdin_data: stdin_data)
 
       expect(stdout_str).to include("sum of given input string is 7")
+      expect(status.success?).to eq(true)
+    end
+
+    it "should parse string and return sum excluding number > 1000" do
+      stdin_data = <<~INPUT
+        //[**][\\n][%]\n1**2%3\n1**1000,1001
+      INPUT
+      stdout_str, status = Open3.capture2('ruby', subject, stdin_data: stdin_data)
+
+      expect(stdout_str).to include("sum of given input string is 1007")
       expect(status.success?).to eq(true)
     end
 

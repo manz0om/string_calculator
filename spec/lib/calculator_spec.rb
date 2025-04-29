@@ -24,6 +24,11 @@ RSpec.describe Calculator do
       expect(subject.add(numbers)).to eq(7)
     end
 
+    it "return sum of numbers less than equal to 1000" do
+      numbers = [1,5,1000,1001]
+      expect(subject.add(numbers)).to eq(1006)
+    end
+
     it "raise NegativeInputError for negative input" do
       numbers = [3,5,-1,-2]
       expect{ subject.add(numbers) }.to raise_error(NegativeInputError, "negative numbers not allowed -1,-2")
