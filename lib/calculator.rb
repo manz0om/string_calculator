@@ -6,6 +6,7 @@ class Calculator
     sum = 0
     negatives = []
     numbers.each do |n|
+      next if n > 1000
       if n < 0
         negatives << n
         next

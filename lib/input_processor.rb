@@ -1,7 +1,7 @@
 class InputProcessor
   def initialize(str = nil)
     @str = str
-    @delimiters = [",","\n"]
+    @delimiters = [",","\\n","\n"]
     check_and_update_delimiters
   end
 
