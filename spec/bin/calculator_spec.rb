@@ -160,6 +160,18 @@ RSpec.describe "String Calculator" do
       expect(status.success?).to eq(true)
     end
 
+    it "should parse string and return sum excluding number > 1000" do
+      stdin_data = <<~INPUT
+        //[**][\\n][%]\n1**2%3\n1
+        **1000,
+        1001
+      INPUT
+      stdout_str, status = Open3.capture2('ruby', subject, stdin_data: stdin_data)
+
+      expect(stdout_str).to include("sum of given input string is 1007")
+      expect(status.success?).to eq(true)
+    end
+
     it "should parse string and display negative numbers not allowed" do
       stdin_data = <<~INPUT
         //[**][%][----]\n1**2%3\n1-----5

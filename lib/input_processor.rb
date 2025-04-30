@@ -6,12 +6,12 @@ class InputProcessor
   end
 
   def check_and_update_delimiters
-    delimiter_substring = @str.match(%r{//(.*)\n})
+    delimiter_substring = @str.match(%r{//(.*)\]\\n})
     if delimiter_substring
       delim_str_list = delimiter_substring[1].split(/\[|\]/)
       delim_str_list.delete("")
       @delimiters += delim_str_list
-      @str = @str.split(%r{//(.*)\n}).last
+      @str = @str.split(%r{//(.*)\]\\n}).last
     end
     @delimiters
   end

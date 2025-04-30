@@ -5,8 +5,9 @@ require_relative '../lib/calculator'
 require_relative '../lib/error/negative_input_error'
 
 puts '------> String calculator <------'
-puts "Enter String -: (press ctrl+D to end the input)"
+puts "Enter String -: (press ctrl+Z(Windows) / ctrl+D(LINUX) to end the input)"
 input = STDIN.read
+input.gsub!("\n","\\n")
 begin
   number_list = InputProcessor.new(input).parse
   sum = Calculator.new.add(number_list)

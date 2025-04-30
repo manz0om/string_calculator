@@ -51,27 +51,27 @@ RSpec.describe InputProcessor do
   end
 
   context "process delimiter given in input string" do
-    let(:input) {"//[***]\n1***2***3"}
+    let(:input) {"//[***]\\n1***2***3"}
 
     it "should parse string and return array of numbers" do
       expect(subject.new(input).parse).to eq([1,2,3])
     end
 
     it "should parse string and return array of numbers including negatives" do
-      input = "//[***]\n1***2***3***-4"
+      input = "//[***]\\n1***2***3***-4"
       expect(subject.new(input).parse).to eq([1,2,3,-4])
     end
   end
 
   context "process mutiple delimiter given in input string" do
-    let(:input) {"//[**][\\n][%]\n1**2%3\n1"}
+    let(:input) {"//[**][\\n][%]\\n1**2%3\\n1"}
 
     it "should parse string and return array of numbers" do
       expect(subject.new(input).parse).to eq([1,2,3,1])
     end
 
     it "should parse string and return array of numbers including negatives" do
-      input = "//[**][%][----]\n1**2%3\n1-----5"
+      input = "//[**][%][----]\\n1**2%3\\n1-----5"
       expect(subject.new(input).parse).to eq([1,2,3,1,-5])
     end
   end
