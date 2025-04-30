@@ -110,7 +110,7 @@ RSpec.describe "String Calculator" do
   context "process delimiter given in input string" do
     it "should parse string and return sum" do
       stdin_data = <<~INPUT
-        "//[***]\n1***2***3"
+        //[***]\n1***2***3
       INPUT
       stdout_str, status = Open3.capture2('ruby', subject, stdin_data: stdin_data)
 
@@ -120,7 +120,7 @@ RSpec.describe "String Calculator" do
 
     it "should parse string and return sum excluding number > 1000" do
       stdin_data = <<~INPUT
-        "//[***]\n1***2***3***1000,1001"
+        //[***]\n1***2***3***1000,1001
       INPUT
       stdout_str, status = Open3.capture2('ruby', subject, stdin_data: stdin_data)
 
