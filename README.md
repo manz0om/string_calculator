@@ -16,7 +16,7 @@
 -  run the below command    
   -   `bundle exec rspec spec/*`  
   
-##Screenshots of execution and test  
+## Screenshots of execution and test  
 1.  
 ![1](https://github.com/user-attachments/assets/e1da6203-face-4482-aa67-1ab5b72c0545)
   
