@@ -13,5 +13,6 @@ begin
   sum = Calculator.new.add(number_list)
   puts "sum of given input string is #{sum}"
 rescue NegativeInputError => e
+  puts "negative input"
   puts e.message
 end
