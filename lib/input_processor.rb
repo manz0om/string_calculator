@@ -1,3 +1,4 @@
+# convert input to operable form
 class InputProcessor
   def initialize(str = nil)
     @str = str
