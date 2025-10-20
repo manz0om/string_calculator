@@ -1,24 +1,22 @@
 # String Calculator  
   
-Ruby version - 3.4.2  
+## Pre-requisite -   
+-  Install ruby 3.4.2 for executing the code  
+-  clone the repo
+-  run  `bundle install`, to install the gems  
   
-Pre-requisite -   
-  Install ruby 3.4.2 for executing the code  
-  After installing ruby, clone the repo  
-  run - bundle install, to install the gems  
+## To run the calculator -  
+-  cd to the string_calculator directory  
+-  run the below command  
+  -  windows - `ruby .\bin\calculator.rb`  
+  -  linux   - `ruby bin/calculator.rb`  
   
-To run the calculator -  
-  cd to the string_calculator directory  
-  run the below command  
-    windows - ruby .\bin\calculator.rb  
-    linux   - ruby bin/calculator.rb  
+## To run the tests -  
+-  cd to the string_calculator directory  
+-  run the below command    
+  -   `bundle exec rspec spec/*`  
   
-To run the tests -  
-  cd to the string_calculator directory  
-  run the below command  
-    bundle exec rspec  
-  
-Screenshots of execution and test  
+##Screenshots of execution and test  
 1.  
 ![1](https://github.com/user-attachments/assets/e1da6203-face-4482-aa67-1ab5b72c0545)
   
