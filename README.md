@@ -1,7 +1,7 @@
 # String Calculator  
   
 ## Pre-requisite -   
--  Install ruby 3.4.2 for executing the code  
+-  Install ruby 3.4.5 for executing the code  
 -  clone the repo
 -  run  `bundle install`, to install the gems  
   
